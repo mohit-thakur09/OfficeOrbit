@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Page</title>
+    <link rel="stylesheet" href="../styles/mycss.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="container bg-dark text-light text-center">
+    <div class="m-4">
+        <h2 class="">Employee's Details</h2>
+    </div>
+
+    <%- include('../partials/nav.ejs') %>
+            <%if(!status) {%>
+                <h5>No Records Found!</h5>
+                <% }else{ %>
+                    <form action="/updateuser" method="post" class="m-4">
+                        <label for="e_id" class="m-4">Select Emp ID: </label>
+                        <select class="" to="e_id" name="emp_id" class="m-2">
+                            <% for( let i=0; i < data.length; i++ ) { %>
+                                <option name="<%= data[i].id %>" <%=(data[i].id==Details.id)?"selected":"" %>>
+                                    <%= data[i].id %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <button class="m-2">click</button>
+                    </form>
+                    <% } %>
+    <% if (Details.name) { %>
+
+        <form action="<%= `/updateAck/${Details.id}`  %>" method="post">
+            <div class="d-flex justify-content-center align-middle">
+                <table cellpadding="8px">
+                    <tbody>
+                        <tr>
+                            <td><label for="uname" class="text-light">Name:</td>
+                            <td><input type="text" name="empname" id="uname" value="<%= Details.name %>"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="uage" class="text-light ">Age:</td>
+                            <td><input type="text" name="empage" id="uage" value="<%= Details.age %>"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="usal" class="text-light">Salary:</td>
+                            <td><input type="text" name="empsal" id="usal" value="<%= Details.salary %>"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-info m-3">Update User</button>
+        </form>
+        <% } %>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous">
+            </script>
+            <script src="../scripts/myscript.js"></script>
+</body>
+</html>

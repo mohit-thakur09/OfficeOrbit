@@ -1,0 +1,11 @@
+a[aria-current="page"]{
+    color: white;
+    background-color: cadetblue;
+    border-radius: 5px;
+    font-weight: bold;
+    
+}
+li{
+    font-size: large;
+    padding: 10px;
+}
